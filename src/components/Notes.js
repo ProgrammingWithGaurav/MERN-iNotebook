@@ -5,26 +5,27 @@ import AddNote from './AddNote';
 
 const Notes = () => {
     const context = useContext(noteContext);
-    const { notes, getNotes } = context;
+    const { notes, getNotes, editNote } = context;
     useEffect(() => {
         getNotes()
         // eslint-disable-next-line
     }, [])
-    const ref = useRef(null)
-    const [note, setNote] = useState({etitle: "", edescription: "", etag: ""})
+    const ref = useRef(null);
+    const refClose = useRef(null);
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
 
     const updateNote = (currentNote) => {
         ref.current.click();
-        setNote({etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
+        setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     }
 
-    const handleClick = (e)=>{
-        console.log("Updating the note...", note)
-        e.preventDefault(); 
+    const handleClick = (e) => {
+        editNote(note.id, note.etitle, note.edescription, note.etag)
+        refClose.current.click()
     }
 
-    const onChange = (e)=>{
-        setNote({...note, [e.target.name]: e.target.value})
+    const onChange = (e) => {
+        setNote({ ...note, [e.target.name]: e.target.value })
     }
 
     return (
@@ -54,11 +55,11 @@ const Notes = () => {
                                     <label htmlFor="tag" className="form-label">Tag</label>
                                     <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
                                 </div>
- 
+
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
                         </div>
                     </div>
