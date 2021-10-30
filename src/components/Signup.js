@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
     const host = 'http://localhost:5000'
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
 
@@ -23,9 +23,10 @@ const Signup = () => {
         if(json.success){
         localStorage.setItem('token', json.authtoken)
         history.push("/")
+        props.showAlert("Account Created Successfully", "success")
         }
         else {
-            alert('Invalid credentials')
+            props.showAlert("Invalid credentails", "danger")
         }
 
 
@@ -43,7 +44,7 @@ const Signup = () => {
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
                     <input type="email" className="form-control" name="email" id="email" onChange={onChange} />
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
