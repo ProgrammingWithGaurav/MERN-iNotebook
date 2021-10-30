@@ -14,7 +14,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         'Content-Type': 'applicatin/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3OGMwOWMyODllZjA3ODdiNzU4MTA0In0sImlhdCI6MTYzNTMwMzU4MH0.xeoAKfdLrHxh_Ehy-Nnbg6yhilSSg1yX581s6Os6jM4'
+        'auth-token': localStorage.getItem('token')
       }
     })
     const json = await response.json();
@@ -29,7 +29,7 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3OGMwOWMyODllZjA3ODdiNzU4MTA0In0sImlhdCI6MTYzNTMwMzU4MH0.xeoAKfdLrHxh_Ehy-Nnbg6yhilSSg1yX581s6Os6jM4"
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({ title, description, tag })
     });
@@ -44,12 +44,13 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         'Content-Type': 'applicatin/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3OGMwOWMyODllZjA3ODdiNzU4MTA0In0sImlhdCI6MTYzNTMwMzU4MH0.xeoAKfdLrHxh_Ehy-Nnbg6yhilSSg1yX581s6Os6jM4'
+        'auth-token': localStorage.getItem('token')
       }
     })
     const newNotes = notes.filter((note) => { return note._id !== id })
     setNotes(newNotes)
     const json = await response.json()
+    console.log(json);
   }
 
   // Edit a Note
@@ -60,11 +61,12 @@ const NoteState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3OGMwOWMyODllZjA3ODdiNzU4MTA0In0sImlhdCI6MTYzNTMwMzU4MH0.xeoAKfdLrHxh_Ehy-Nnbg6yhilSSg1yX581s6Os6jM4"
+        "auth-token": localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
     const json = await response.json()
+    console.log(json);
 
     let newNotes = JSON.parse(JSON.stringify(notes));
     // Logic to edit in client
