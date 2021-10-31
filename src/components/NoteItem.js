@@ -16,7 +16,10 @@ const NoteItem = (props) => {
                             <i className="far fa-edit mx-2" onClick={() => { updateNote(note) }}></i>
                         </div>
                     </div>
-                    <p className="card-text">{note.description}</p>
+                    <div className="my-2 d-flex justify-content-between">
+                        <p className="card-text w-75">{note.description}</p>
+                        <span className="badge bg-danger col-auto h-25">{note.tag}</span>
+                    </div>
                 </div>
             </div>
         </div>
