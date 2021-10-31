@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Signup = (props) => {
-    const host = 'http://localhost:5000'
+    const host = 'https://my-inotebook-api.herokuapp.com'
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
 
     let history  = useHistory();
@@ -55,7 +55,8 @@ const Signup = (props) => {
                     <label htmlFor="cpassword" className="form-label">Conform Password</label>
                     <input type="password" className="form-control" name="cpassword" id="cpassword" onChange={onChange} minLength={5} required/>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button><br />
+                <small>Already have an account? <Link to="/login">Signin</Link></small>
             </form>
         </div>
     )

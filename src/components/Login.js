@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({email: "", password: ""});
     let history  = useHistory();
-    const host = 'http://localhost:5000';
+    const host = 'https://my-inotebook-api.herokuapp.com';
     const handleSubmit = async (e) => {
         e.preventDefault();
         // API Call
@@ -44,7 +44,8 @@ const Login = (props) => {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" value={credentials.password} onChange={onChange} id="password" name="password" />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button><br />
+                <small>Not have an account yet? <Link to="/signup">Signup</Link></small>
             </form>
         </div>
     )

@@ -3,10 +3,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 
 const Navbar = () => {
     let history = useHistory();
-    const handleLogout = () => {
-        localStorage.removeItem('token')
-        history.push('/login')
-    }
+ 
     let location = useLocation();
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,7 +25,10 @@ const Navbar = () => {
                         <Link to="/login" className="btn btn-primary mx-1" role="button">Login</Link>
                         <Link to="/signup" className="btn btn-primary mx-1" role="button">Signup</Link>
                     </form> :
-                        <button onClick={handleLogout} className="btn btn-primary" role="button">Logout</button>}
+                        // eslint-disable-next-line
+                        <Link to="/setting"><button className="btn btn-primary"><i className="fas fa-cog text-light"></i></button></Link>
+
+                    }
                 </div>
             </div>
         </nav>
