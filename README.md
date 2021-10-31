@@ -10,6 +10,7 @@
 - Logout
 - Private Note
 - Get your details after signup
+- Delete your account
 
 ## Notes Features
 - create note
