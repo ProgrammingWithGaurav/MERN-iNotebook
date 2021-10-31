@@ -1,6 +1,9 @@
 # iNotebook - Your notes on the cloud
 - Save Your Notes secured on the cloud
 - live site: https://my-inotebook.netlify.app/
+
+## Made with MERN STACK
+
 ## Features
 - Create Account
 - Sigin
